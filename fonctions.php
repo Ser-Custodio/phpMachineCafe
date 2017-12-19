@@ -1,15 +1,21 @@
 <?php
+	$stockExp = 20;
+	$stockThe = 10;
+	$stockLat = 10;
+	$stockCho = 10;
+	$insMon = 0;
+	$dates = date('l, d F Y');
 	$expresso = array('');
 	$recettes = array(
-					'expresso' => array(
-										'cafe' => 1,
-										'eau' => 1),
-					'thé' => array(
-									'eau' => 3,
-									'the' => 1),
-					'cafe long' => array(
-										'eau' => 2,
-										'cafe' => 2));
+					'Expresso' => array(
+										'Café' => 1,
+										'Eau' => 1),
+					'Thé' => array(
+									'Eau' => 3,
+									'Thé' => 1),
+					'Cafe Long' => array(
+										'Eau' => 2,
+										'Café' => 2));
 
 	function preparerBoisson ($boisson, $nbsucre){
 		global $recettes;

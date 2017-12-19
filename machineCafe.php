@@ -1,21 +1,5 @@
 <?php
 	include 'fonctions.php';
-	$stockExp = 20;
-	$stockThe = 10;
-	$stockLat = 10;
-	$stockCho = 10;
-	$insMon = 0;
-	$dates = date('l, d F Y');
-	$recette = array(
-					'expresso' => array(
-										'cafe' => 1,
-										'eau' => 1),
-					'the' => array(
-									'eau' => 3,
-									'the' => 1),
-					'cafeLong' => array(
-										'eau' => 2,
-										'cafe' => 2));
 ?>
 <!DOCTYPE html> 
 <html> 
@@ -64,16 +48,25 @@
 	<div class="container">
 		<div class='displays'>
 			<form method="post" action="machineCafe.php">
-				Drink: <input type="text" name="drink">
+				Drink: <br>
+				<input type="radio" name="drink" value="Expresso">Expresso
+				<input type="radio" name="drink" value="Cafe Long">Cafe Long
+				<input type="radio" name="drink" value="Thé">Thé
   				<br><br>
-  				Number of Sugar: <input type="text" name="nbsucre">
+  				Number of Sugar:<br>
+  				<input type="radio" name="nbsucre" value="0">0
+  				<input type="radio" name="nbsucre" value="1">1
+  				<input type="radio" name="nbsucre" value="2">2
+  				<input type="radio" name="nbsucre" value="3">3
+  				<input type="radio" name="nbsucre" value="4">4
+  				<input type="radio" name="nbsucre" value="5">5
   				<br><br><input type="submit" name="submit">
 			</form>
 			<br><br>
 			<?php
 				if (isset($_POST['drink']) && isset($_POST['nbsucre'])){
 					echo preparerBoisson($_POST['drink'], $_POST['nbsucre']);
-				};
+			};
 			?>
 
 		</div>
