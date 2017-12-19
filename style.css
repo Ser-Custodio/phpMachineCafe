@@ -21,4 +21,12 @@ body{
 }
 .dia{
 	font-size: 25px;
+	text-align: center;
+}
+.recet{
+	font-size: 20px;
+	color: red;
+}
+.formula{
+	font-size: 30px;
 }

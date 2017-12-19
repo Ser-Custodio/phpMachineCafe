@@ -1,14 +1,10 @@
 <?php
-	$recette = array(
-					'expresso' => array(
-										'cafe' => 1,
-										'eau' => 1),
-					'the' => array(
-									'eau' => 3,
-									'the' => 1),
-					'cafeLong' => array(
-										'eau' => 2,
-										'cafe' => 2));
-	var_dumpvfhb($recette);
+	$stock = array(
+					'Eau' => 15,
+					'Cafe' => 25,
+					'Thé' => 18,
+					'Sucre' => 14,
+				);
+	var_dump($stock);
 
 ?>
