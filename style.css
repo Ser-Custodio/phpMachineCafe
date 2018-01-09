@@ -3,11 +3,12 @@ table, th, td{
 
 }
 table{
-	width: 50%;
+	width: 80%;
 }
 th{
 	height: 40px;
 	font-size: 20px;
+	text-align: center;
 }
 td{
 	height: 30px;
@@ -25,9 +26,9 @@ body{
 	text-align: center;
 }
 .recet{
-	font-size: 20px;
+	font-size: 10px;
 	color: red;
 }
 .formula{
-	font-size: 30px;
+	font-size: 25px;
 }

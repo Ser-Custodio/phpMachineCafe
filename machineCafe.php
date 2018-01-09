@@ -1,6 +1,11 @@
 <?php
+	$bdd = new PDO('mysql:host=localhost;dbname=machineCafe;charset=utf8','root','');	
+	array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 	include 'fonctions.php';
 	$show = '';
+
+	$reponse = $bdd->query('SELECT * FROM boisson');
+	$newStock = $bdd->query('SELECT * FROM ingredients');
 ?>
 <!DOCTYPE html> 
 <html> 
@@ -14,9 +19,9 @@
 	<title>Coffee Machine</title>
 </head> 
 <body> 
-	<h1>•••••••••••••••••••••••••••••••••••••••••<br>THE COFFEE MACHINE<br>•••••••••••••••••••••••••••••••••••••••••</h1>
+<!-- 	<h1>•••••••••••••••••••••••••••••••••••••••••<br>THE COFFEE MACHINE<br>•••••••••••••••••••••••••••••••••••••••••</h1> -->
 		<!-- adds the date on the page -->
-	<p class='dia'><b>Today is: <?= $dates; ?></b></p>
+	<!-- <p class='dia'><b>Today is: <?= $dates; ?></b></p> -->
 	<?php
 	// Verifies if the variable $_POST is defined and echo of all the different 
 	// $_POST variables(if defined)
@@ -37,9 +42,9 @@
 				<input class='radioDrink radioExp' type="radio" name="drink" value="Expresso">Expresso
 				<input class='radioDrink radioLong' type="radio" name="drink" value="Cafe Long">Café Long
 				<input class='radioDrink radioThe' type="radio" name="drink" value="Thé">Thé
-  				<br><br>
+  				<br>
   				Number of Sugar:<br>
-  				<input class="sugarRad" type="radio" name="nbsucre" value="0">0
+  				<input class="sugarRad" type="radio" name="nbsucre" value="0" checked>0
   				<input class="sugarRad1" type="radio" name="nbsucre" value="1">1
   				<input class="sugarRad2" type="radio" name="nbsucre" value="2">2
   				<input class="sugarRad3" type="radio" name="nbsucre" value="3">3
@@ -54,54 +59,52 @@
 	echo $show; 
 	?>	
 	<!-- adds a table with information about the drinks -->	
-		
 		<table>
 			<tr>
+				<th>CODE</th>
 				<th>DRINK</th>
 				<th>PRICE</th>
-				<th>STOCK EAU</th>
-				<th>STOCK CAFE</th>
-				<th>STOCK THE</th>
-				<th>STOCK SUCRE</th>
 			</tr>
-			<tr>
-				<td>Expresso</td>
-				<td>50cts</td>
-				<!-- Fills the cells with the variables from an array -->
-				<td class='stockWater'><?= $stock['Eau'] ?></td>
-				<td class='stockCoffee'><?= $stock['Cafe'] ?></td>
-				<td class='stockTea'><?= $stock['Thé'] ?></td>
-				<td class='stockSugars'><?= $stock['Sucre'] ?></td>
-			</tr>
-			<tr>
-				<td>Tea</td>
-				<td>50cts</td>
-				<td class='stockWater'><?= $stock['Eau'] ?></td>
-				<td class='stockCoffee'><?= $stock['Cafe'] ?></td>
-				<td class='stockTea'><?= $stock['Thé'] ?></td>
-				<td class='stockSugars'><?= $stock['Sucre'] ?></td>
-			</tr>
-			<tr>
-				<td>Latte</td>
-				<td>60cts</td>
-				<td class='stockWater'><?= $stock['Eau'] ?></td>
-				<td class='stockCoffee'><?= $stock['Cafe'] ?></td>
-				<td class='stockTea'><?= $stock['Thé'] ?></td>
-				<td class='stockSugars'><?= $stock['Sucre'] ?></td>
-			</tr>
-			<tr>
-				<td>Hot Chocolate</td>
-				<td>60cts</td>
-				<td class='stockWater'><?= $stock['Eau'] ?></td>
-				<td class='stockCoffee'><?= $stock['Cafe'] ?></td>
-				<td class='stockTea'><?= $stock['Thé'] ?></td>
-				<td class='stockSugars'><?= $stock['Sucre'] ?></td>
-			</tr>
+			<?php
+				while ($donnes = $reponse->fetch())
+				{
+					echo "<tr>
+						<td>" . $donnes['Code_Boisson'] . "</td>
+						<td>".$donnes['Nom_Boisson']. "</td>
+						<td>" . $donnes['Prix_Vente']. "</td>
+					</tr>";
+				};
+			?>
+			
 		</table>
-	<br>
-	<p>En attente</p>
+			<?php
+				$reponse->closeCursor();
+			?>
+	<br>	<br>
+		<table>
+			<tr>
+				<th>CODE</th>
+				<th>INGREDIENT</th>
+				<th>STOCK</th>
+			</tr>
+			<?php
+				while ($stockShow = $newStock->fetch())
+				{
+					echo "<tr>
+						<td>" . $stockShow['Id_Ingredients'] . "</td>
+						<td>".$stockShow['Nom_Ingredients']. "</td>
+						<td>" . $stockShow['Stock']. "</td>
+					</tr>";
+				};
+			?>
+			
+		</table>
+			<?php
+				$newStock->closeCursor();
+			?>
+<!-- 	<p>En attente</p> -->
 	<!-- adds the information about how much was inserted in the machine -->		
-	<p><b>Inserted Money: <?= $insMon?></b></p>
+<!-- 	<p><b>Inserted Money: <?= $insMon?></b></p> -->
 	
 </body> 
 </html>
