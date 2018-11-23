@@ -1,5 +1,7 @@
 <?php	
-	$bdd = new PDO('mysql:host=localhost;dbname=machineCafe;charset=utf8','root','');	
+	include 'config-ini.php';
+	$bdd = new PDO('mysql:host=localhost;dbname=machineCafe;charset=utf8',$username, $userpass);	
+	
 	array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 	$insMon = 0;
 	$dates = date('l, d F Y');
@@ -52,8 +54,9 @@
 			$sales = $bdd->prepare('INSERT INTO vente (Code_Boisson, Dates, NbSucre)
 									VALUES (?,?,?)');
 			$sales->execute(array($bebida,$data,$sugars));
+		}
 	}
-}
+	
 	function recipe(){
 		global $bdd;
 		if (isset($_POST['drink']) && isset($_POST['sugar'])){
@@ -120,4 +123,6 @@ function updateSugarStocks(){
 			$toAdd->closeCursor();
 		}
 	}
+
+	
 ?>

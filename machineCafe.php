@@ -1,7 +1,8 @@
 <?php
-	$bdd = new PDO('mysql:host=localhost;dbname=machineCafe;charset=utf8','root','');	
-	array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 	include 'fonctions.php';
+
+	
+	
 	$show = '';
 
 	$reponse = $bdd->query('SELECT * FROM boisson');

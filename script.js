@@ -3,7 +3,7 @@ $(document).ready(function(){
 	let numCafe = parseInt($('.stockCafe').val());
 	let numThe = parseInt($('.stockThe').val());	
 	let numSugar = parseInt($('.stocksugar').val());
-	console.log(numSugar);
+	
 	switch (numSugar){
 		case 0:
 			$('.sugarRad1, .sugarRad2, .sugarRad3, .sugarRad4, .sugarRad5').attr('disabled', 'disabled');	

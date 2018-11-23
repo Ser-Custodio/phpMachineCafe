@@ -1,7 +1,7 @@
 <?php
 	include 'fonctions.php';
-	$bdd = new PDO('mysql:host=localhost;dbname=machineCafe;charset=utf8','root','');	
-	array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);	
+	
+	
 	$reponse = $bdd->query('SELECT * FROM boisson');	
 	function get_recettes() {
 		global $bdd;
